@@ -1,7 +1,7 @@
 export const mealMenu = [
-  { title: "Супи", href: "soups", active: true },
-  { title: "Основни", href: "diners", active: false },
-  { title: "Аламинути", href: "fastfoods", active: false },
+  { title: "Супи", href: "soups", icon: "cake.svg", active: true },
+  { title: "Основни", href: "diners", icon: "cake.svg", active: false },
+  { title: "Аламинути", href: "fastfoods", icon: "cake.svg", active: false },
   { title: "Салати", href: "salads", active: false },
   { title: "Хамбургери", href: "hamburgers", active: false },
   { title: "Пици", href: "pizzas", active: false },

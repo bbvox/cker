@@ -15,7 +15,7 @@ class Meal extends React.Component {
   renderCells() {
     const { type } = this.props.match.params;
     return (
-      <div className="grid">
+      <article className="grid">
         {this.state.meals.map((v, k) => (
           <div key={k} className={"item" + (k === 0 ? " main" : "")}>
             <Link to={`/meals/${type}/${k}`}>
@@ -24,17 +24,17 @@ class Meal extends React.Component {
             <span>{v.title}</span>
           </div>
         ))}
-      </div>
+      </article>
     );
   }
 
   render() {
     return (
-      <div>
+      <main>
         <h2> Ядене : {this.props.match.params.type} </h2>
 
         {this.renderCells()}
-      </div>
+      </main>
     );
   }
 }
