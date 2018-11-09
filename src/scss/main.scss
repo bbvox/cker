@@ -1,0 +1,19 @@
+/* SETTINGS */
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+@import "_init";
+@import "_utils";
+
+.App {
+  background: $color-white;
+  width: $width-app;
+  margin: auto;
+  padding: 2rem 0;
+
+  @import "header";
+  @import "center";
+  @import "footer";
+
+  @import "media";
+}
