@@ -5,33 +5,98 @@ main {
 .grid {
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: 250px 150px;
-  grid-auto-flow: dense;
 
-  &.single .item {
-    border: 1px solid $color-bg;
+  &.multi {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 250px 250px;
+    grid-auto-flow: dense;
+  }
+
+  &.single {
+      grid-template-columns: 25% auto 25%;
+      grid-template-areas:
+        "imenu iimg iimg"
+        "iads iinfo iprod";
+
+    .item {
+      // border: 1px solid $color-bg;
+      &.imenu {
+        grid-area: imenu;
+        text-align: center;
+      }
+      &.iimg {
+        grid-area: iimg;
+      }
+      &.iinfo {
+        grid-area: iinfo;
+        .ico {
+          font-size: 1rem;
+          i {
+            color: $color-blue;
+            display: inline-block;
+            margin: 1rem;
+          }
+        }
+      }
+      &.iprod {
+        grid-area: iprod;
+      } 
+      &.iads {
+        grid-area: iads;
+        background: #f2f2f2;
+      }
+    }
+    h3 {
+      font-size: 18px;
+      margin: 0;
+      padding: 4px 10px;
+      color: #63a69f;
+      border-bottom: 1px solid #f2e1ad;
+      line-height: 36px;
+      &.notice {
+        color: $color-bg;
+      }
+    }
+    img {
+      margin: 1rem 0;
+      max-height: 300px;
+    }
+    ul.sub_menu {
+      margin-top: 3rem;
+      list-style: none outside;
+
+      a {
+        text-decoration: none;
+        display: block;
+        font-size: 1.1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid $color-yellow;
+        color: $color-blue;
+        &:hover {
+          background: $color-yellow;
+        }
+      }
+
+    }
+    .box_shadow {
+      margin: 1rem;
+      padding: 1rem;
+      background: $color-white; 
+      @include boxShadow();
+    }
   }
 
   div.item {
     position: relative;
     overflow: hidden;
+    min-height: 200px;
 
     &.main {
       grid-column-start: 1;
       grid-column-end: 3;
     }
 
-    &.ileft {
-      grid-row-start: 1;
-      grid-row-end: 3;
-    }
-    &.iimg {
-      grid-column-start: 2;
-      grid-column-end: 4;
-    }
-
-    span {
+    span.title {
       position: absolute;
       background: $color-menu;
       bottom: 0px;
@@ -54,3 +119,14 @@ main {
     }
   }
 }
+
+  // https://gridbyexample.com/examples/example13/
+  // &.imenu {
+  //   grid-row-start: 1;
+  //   grid-row-end: 3;
+  // }
+  // &.iimg {
+  //   grid-column-start: 2;
+  //   grid-column-end: 4;
+  // }
+  //APPROACH 2

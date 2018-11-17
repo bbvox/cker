@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 
 import { meals } from "../services/config";
 
-class Meal extends React.Component {
+class Multi extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       meals: meals
     };
@@ -15,13 +14,13 @@ class Meal extends React.Component {
   renderCells() {
     const { type } = this.props.match.params;
     return (
-      <article className="grid">
+      <article className="grid multi">
         {this.state.meals.map((v, k) => (
           <div key={k} className={"item" + (k === 0 ? " main" : "")}>
             <Link to={`/meals/${type}/${k}`}>
-              <img src={`../images/${v.img}`} />
+              <img src={`../images/${v.img}`} alt={v.title} />
             </Link>
-            <span>{v.title}</span>
+            <span className="title">{v.title}</span>
           </div>
         ))}
       </article>
@@ -30,8 +29,10 @@ class Meal extends React.Component {
 
   render() {
     return (
-      <main>
+      <main className={'app_width app_white'}>
         <h2> Ядене : {this.props.match.params.type} </h2>
+        
+        <hr size={"1"} />
 
         {this.renderCells()}
       </main>
@@ -39,4 +40,4 @@ class Meal extends React.Component {
   }
 }
 
-export default Meal;
+export default Multi;
