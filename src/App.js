@@ -56,7 +56,7 @@ class App extends Component {
               {!this.state.singlePage && Slider()}
               <Route exact path="/" component={Home} />
               <Route exact path="/meals/:type" component={Multi} />
-              <Route exact path="/meals/:type/:pageId" render={(props) => <Single onSingle={this.onSinglePage} {...props} />} />
+              <Route exact path="/meals/:type/:pageId" render={(props) => <Single appOnSingle={this.onSinglePage} {...props} />} />
               <Footer />
             </>
           </Router>
