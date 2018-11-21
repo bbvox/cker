@@ -1,9 +1,10 @@
 import React from "react";
 import { CSSTransitionGroup } from 'react-transition-group' // ES6
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { rootUrl, singleMenu } from "../services/config";
 
 import { getData } from "../services/single";
+
 
 class Single extends React.Component {
   constructor(props) {
@@ -11,8 +12,12 @@ class Single extends React.Component {
     this.state = {
       info: {},
       prods: [],
-      error: ""
+      error: "",
+      anims: ["one", "two", "three", "four"]
     };
+
+    this.handleAddAnim = this.handleAddAnim.bind(this);
+    this.handleRemoveAnim = this.handleRemoveAnim.bind(this);
   }
   //only 1 is available
   getData(pageId) {
@@ -40,6 +45,19 @@ class Single extends React.Component {
 
   componentWillUnmount() {
     this.props.appOnSingle(false);
+  }
+
+  handleAddAnim () {
+    const newItems = this.state.anims.concat([
+      prompt('Enter some text')
+    ]);
+    this.setState({anims: newItems});
+  }
+
+  handleRemoveAnim(i) {
+    let newItems = this.state.anims.slice();
+    newItems.splice(i, 1);
+    this.setState({anims: newItems});
   }
 
   renderMenu() {
@@ -82,6 +100,26 @@ class Single extends React.Component {
     );
   }
 
+  renderAds () {
+    const items = this.state.anims.map((item, i) => (
+      <div key={item} onClick={() => this.handleRemoveAnim(i)}>
+        {item}
+      </div>
+    ));
+    return (
+      <div>
+        <button onClick={this.handleAddAnim}>Add Item</button>
+        <ReactCSSTransitionGroup
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+
+          {items}
+        </ReactCSSTransitionGroup>
+      </div>
+    );
+  }
+
   renderMain () {
     return (
       <article className="grid single">
@@ -99,12 +137,7 @@ class Single extends React.Component {
           {this.renderProducts()}
         </div>
         <div className="item iads">
-         {/*
-          <CSSTransitionGroup 
-          transitionName="example" 
-          transitionEnterTimeout={500} 
-          transitionLeaveTimeout={300}>test aaaaa</CSSTransitionGroup>
-        */}
+          {this.renderAds()}
         </div>
       </article>
     )
@@ -112,10 +145,14 @@ class Single extends React.Component {
 
   render() {
     return (
-      <main className={'app_width app_white'}>
-      <h2> Ядене : {this.props.match.params.type} </h2>
-      {this.renderMain()}
-    </main>
+      <React.Fragment>
+        <div className="app_width">
+        <h2> Ядене : {this.props.match.params.type} </h2>
+        </div>
+        <main className={'app_width app_white'}>
+          {this.renderMain()}
+        </main>
+    </React.Fragment>
     );
   }
 }
