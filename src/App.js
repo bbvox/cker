@@ -2,32 +2,9 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-// import { createStore, applyMiddleware, compose  } from "redux";
-
-import { rootUrl } from "./services/config";
-
-import Header from "./components/Header";
-
-import Home from "./components/Home";
-import Multi from "./components/Multi";
-import Single from "./components/Single";
-import Footer from "./components/Footer";
-
+/* index hold all componenets */
+import * as comp from "./components";
 import store from "./store";
-
-const Slider = (props) => {
-  const sliderStyle = {
-    // position: 'relative',
-    textAlign: 'center',
-    background: '#f5f5f5',
-    marginBottom: '1rem'
-  }
-  return (
-    <div style={sliderStyle}>
-      <img src={`${rootUrl}/images/slider4.jpg`} alt=' ' />
-    </div>
-  )
-}
 
 class App extends Component {
   constructor(props) {
@@ -52,12 +29,13 @@ class App extends Component {
         <div className="App">
           <Router>
             <>
-              <Header />
-              {!this.state.singlePage && Slider()}
-              <Route exact path="/" component={Home} />
-              <Route exact path="/meals/:type" component={Multi} />
-              <Route exact path="/meals/:type/:pageId" render={(props) => <Single appOnSingle={this.onSinglePage} {...props} />} />
-              <Footer />
+              <comp.Header />
+              {/* !this.state.singlePage && Slider() */}
+              {!this.state.singlePage && <comp.Slider />}
+              <Route exact path="/" component={comp.Home} />
+              <Route exact path="/meals/:type" component={comp.Multi} />
+              <Route exact path="/meals/:type/:pageId" render={(props) => <comp.Single appOnSingle={this.onSinglePage} {...props} />} />
+              <comp.Footer />
             </>
           </Router>
         </div>

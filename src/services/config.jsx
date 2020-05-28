@@ -31,5 +31,10 @@ export const singleMenu = [
 
 export const urls = {
   recepie: `${rootUrl}/include/data`,
-  products: `${rootUrl}/include/data`
+  products: `${rootUrl}/include/data`,
+  slider: `${rootUrl}/images/slider`
 }
+
+export const slider = [
+'1.jpg','1.jpg','1.jpg','1.jpg','1.jpg'
+]

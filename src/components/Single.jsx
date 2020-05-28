@@ -1,5 +1,5 @@
 import React from "react";
-import { CSSTransitionGroup } from 'react-transition-group' // ES6
+// import { CSSTransitionGroup } from 'react-transition-group' // ES6
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { rootUrl, singleMenu } from "../services/config";
 
