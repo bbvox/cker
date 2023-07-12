@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "http://192.168.1.111/cooker/build",
   "dependencies": {
-    "node-sass": "^4.10.0",
+    "node-sass": "^9.0.0",
     "prettier": "^1.15.2",
     "react": "^16.6.1",
     "react-addons-css-transition-group": "^15.6.2",
